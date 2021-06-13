@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('pesan/{id}', 'PesanController@index');
+Route::post('pesan/{id}', 'PesanController@pesan');
