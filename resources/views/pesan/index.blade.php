@@ -59,7 +59,7 @@
                                             <form method="post" action="{{ url('pesan') }}/{{ $barang->id }}" >
                                             @csrf
                                                 <input type="text" name="jumlah_pesan" class="form-control" required="">
-                                                <button type="submit" class="btn btn-primary btn-block mt-2" @if($barang->stok <= 1) disabled @endif><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
+                                                <button type="submit" class="btn btn-primary btn-block mt-2 col-md-100" @if($barang->stok < 1) disabled @endif><i class="fa fa-shopping-cart"></i> Masukkan Keranjang</button>
                                             </form>
                                         </td>
                                     </tr>
