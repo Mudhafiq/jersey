@@ -16,6 +16,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index');
 Route::get('pesan/{id}', 'PesanController@index');
 Route::post('pesan/{id}', 'PesanController@pesan');
 Route::get('check-out', 'PesanController@check_out');
@@ -28,3 +29,5 @@ Route::post('profile', 'ProfileController@update');
 
 Route::get('history', 'HistoryController@index');
 Route::get('history/{id}', 'HistoryController@detail');
+
+Route::get('barang', 'BarangController@index')->name('barang');

@@ -36,7 +36,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/') }}">Home<span class="badge badge-danger"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('barang') }}">List Jersey<span class="badge badge-danger"></span></a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
