@@ -29,20 +29,20 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach($pesanans as $pesanan)
+                            @foreach($pesanan as $pesan)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $pesanan->tanggal }}</td>
+                                <td>{{ $pesan->tanggal }}</td>
                                 <td>
-                                    @if($pesanan->status == 1)
+                                    @if($pesan->status >= 2)
                                     Sudah dibayar 
                                     @else
                                     Sudah Pesan & Belum dibayar
                                     @endif
                                 </td>
-                                <td>Rp. {{ number_format($pesanan->jumlah_harga+$pesanan->kode) }}</td>
+                                <td>Rp. {{ number_format($pesan->jumlah_harga+$pesan->kode) }}</td>
                                 <td>
-                                    <a href="{{ url('history') }}/{{ $pesanan->id }}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
+                                    <a href="{{ url('history') }}/{{ $pesan->id }}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
                                 </td>
                             </tr>
                             @endforeach

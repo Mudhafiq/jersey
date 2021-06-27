@@ -29,6 +29,7 @@ Route::post('profile', 'ProfileController@update');
 
 Route::get('history', 'HistoryController@index');
 Route::get('history/{id}', 'HistoryController@detail');
+Route::post('history/{id}', 'PesanController@transaksi');
 
 Route::get('barang', 'BarangController@index')->name('barang');
 

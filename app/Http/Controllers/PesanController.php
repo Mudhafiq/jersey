@@ -6,6 +6,7 @@ use App\Barang;
 use App\Pesanan;
 use App\User;
 use App\PesananDetail;
+use App\Transaksi;
 use Auth;
 use Alert;
 use Carbon\Carbon;
@@ -144,4 +145,49 @@ class PesanController extends Controller
 		alert()->success('Pesanan Sukses Check-Out Lanjutkan Proses Pembayaran', 'Success');
         return redirect('history/'. $pesanan_id);
 	}
+
+	public function transaksi(Request $request, $id)
+    {
+        $pesanan_details = PesananDetail::select('barang_id', 'pesanan_id', 'jumlah')->first();
+
+        $transaksi = new Transaksi();
+        $pesanan_user = Pesanan::where('user_id', Auth::user()->id)->where('status', 1)->first();
+
+        // berdasarkan form input
+        $this->validate($request, [ 
+			'bukti_transaksi' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
+		]);
+
+        // upload file dari input
+        $gambar = $request->bukti_transaksi;
+        // nama folder tujuan
+        $folder_simpan = 'bukti_transfer';
+		$gambar->move($folder_simpan,$gambar->getClientOriginalName());
+  
+        $transaksi->user_id = Auth::user()->id;
+        $transaksi->barang_id = $pesanan_details->barang_id;
+        $transaksi->pesanan_id = $pesanan_details->pesanan_id;
+        $transaksi->jumlah_barang = $pesanan_details->jumlah;
+		$transaksi->alamat = Auth::user()->alamat;
+        $transaksi->bukti_transaksi = $gambar->getClientOriginalName();
+		$transaksi->created_at = date('Y-m-d H:i:s');
+        $transaksi->updated_at = date('Y-m-d H:i:s');
+        $transaksi->save();
+
+        // status jumlah stok barang ketika sudah dibeli
+        //$barang_stok = Barang::where('id', $pesanan_detail->barang_id)->first();
+        //$barang_stok->stok -= $pesanan_detail->jumlah;
+        //$barang_stok->update();   
+
+        // status ketika sudah kirim bukti pembayaran
+        $pesanan_status = Pesanan::where('user_id', Auth::user()->id)->where('status', 1)->first();
+        $pesanan_status->status = 2; // status user membayar
+        $pesanan_status->update();
+
+        $pesanan = Pesanan::where('id', $id)->first();
+        $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        
+        alert()->success('Upload', 'Berhasil!');
+        return view('history.detail', compact('pesanan','pesanan_details'));
+    }
 }

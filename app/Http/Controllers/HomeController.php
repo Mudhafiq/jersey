@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Barang;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,8 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $barangs = Barang::paginate(4);
-        return view('home', compact('barangs'));
+        if(Auth::user()->email !== 'admin@gmail.com'){
+            $barangs = Barang::paginate(4);
+            return view('home', compact('barangs'));
+        }else{
+            $barangs = Barang::paginate();
+            return view('admin', compact('barangs'));
+        }
     }
 
 }

@@ -48,34 +48,13 @@
                             @endif
                         @else
 
-                            <li class="nav-item">
-                                <?php
-                                 $pesanan_utama = \App\Pesanan::where('user_id', Auth::user()->id)->where('status',0)->first();
-                                 if(!empty($pesanan_utama))
-                                    {
-                                     $notif = \App\PesananDetail::where('pesanan_id', $pesanan_utama->id)->count(); 
-                                    }
-                                ?>
-                                <a class="nav-link" href="{{ url('check-out') }}">
-                                    <i class="fa fa-shopping-cart"></i>Keranjang
-                                    @if(!empty($notif))
-                                    <span class="badge badge-danger">{{ $notif }}</span>
-                                    @endif
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('history') }}">History<span class="badge badge-danger"></span></a>
-                            </li>
-
+                            
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ url('profile') }}">
-                                        Profile
-                                    </a>
                                     
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

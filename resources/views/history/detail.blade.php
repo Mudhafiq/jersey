@@ -26,16 +26,14 @@
             </div>
             <div class="card">
                 <div class="card-body">
-                    <form action="/upload/proses" method="POST" enctype="multipart/form-data">
-					    {{ csrf_field() }}
-					    <div class="form-group">
-						    <b>Upload Bukti Pembayaran</b><br/>
-						    <input type="file" name="file">
-                            <input type="submit" value="Upload" class="btn btn-primary">
-					    </div>
-			        </form>
+                <h5>Upload Bukti Pembayaran</h5>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        @csrf   
+                        <input type="file" name="bukti_transaksi"><br>
+                        <button type="submit" class="btn btn-primary mt-2">Upload</button>
+                    </form>
                 </div>
-            </div
+            </div>
             <div class="card mt-2">
                 <div class="card-body">
                     <h3><i class="fa fa-shopping-cart"></i> Detail Pemesanan</h3>

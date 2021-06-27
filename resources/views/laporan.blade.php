@@ -30,12 +30,20 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $pesanan->tanggal }}</td>
-                                <td>Rp. {{ number_format($pesanan->jumlah_harga+$pesanan->kode) }}</td>
+                                <td>Rp. {{ number_format($pesanan->jumlah_harga) }}</td>
                                 <td>
                                 <a href="/hapus/{{ $pesanan->id }}">Hapus</a>
                                 </td>
                             </tr>
                             @endforeach
+                        </tbody>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td><strong>Total pendapatan</strong></td>
+                                <td><strong>Rp. {{ number_format($pesanan->sum('jumlah_harga')) }}</strong></td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
