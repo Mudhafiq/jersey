@@ -27,4 +27,5 @@ class HomeController extends Controller
         $barangs = Barang::paginate(4);
         return view('home', compact('barangs'));
     }
+
 }

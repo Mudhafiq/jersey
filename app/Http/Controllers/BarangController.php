@@ -12,4 +12,5 @@ class BarangController extends Controller
         $barangs = Barang::paginate();
         return view('barang', compact('barangs'));
     }
+
 }

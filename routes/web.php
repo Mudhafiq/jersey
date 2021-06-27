@@ -31,3 +31,10 @@ Route::get('history', 'HistoryController@index');
 Route::get('history/{id}', 'HistoryController@detail');
 
 Route::get('barang', 'BarangController@index')->name('barang');
+
+Route::get('admin', 'AdminController@admin');
+Route::get('admin-user', 'AdminController@user');
+Route::get('admin-laporan', 'AdminController@laporan');
+Route::get('/hapus/{id}', 'AdminController@hapus');
+Route::get('/delete/{id}', 'AdminController@delete');
+Route::get('/destroy/{id}', 'AdminController@destroy');

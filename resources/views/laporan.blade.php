@@ -1,29 +1,26 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <a href="{{ url('check-out') }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
-        </div>
         <div class="col-md-8 mt-2">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Riwayat Pemesanan</li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin') }}">List Jersey</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Laporan</li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin-user') }}">Data User</a></li>
                 </ol>
             </nav>
         </div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h3><i class="fa fa-history"></i> Riwayat Pemesanan</h3>
+                    <h3><i class="fa fa-history"></i> Laporan Pendapatan ADMIN</h3>
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Tanggal</th>
-                                <th>Status</th>
-                                <th>Jumlah Harga</th>
+                                <th>Pendapatan (Rp.)</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -33,16 +30,9 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $pesanan->tanggal }}</td>
-                                <td>
-                                    @if($pesanan->status == 1)
-                                    Sudah dibayar 
-                                    @else
-                                    Sudah Pesan & Belum dibayar
-                                    @endif
-                                </td>
                                 <td>Rp. {{ number_format($pesanan->jumlah_harga+$pesanan->kode) }}</td>
                                 <td>
-                                    <a href="{{ url('history') }}/{{ $pesanan->id }}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
+                                <a href="/hapus/{{ $pesanan->id }}">Hapus</a>
                                 </td>
                             </tr>
                             @endforeach

@@ -24,6 +24,18 @@
                     <h6>dengan nominal : <strong>Rp. {{ number_format($pesanan->kode+$pesanan->jumlah_harga) }}</strong></h6>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/upload/proses" method="POST" enctype="multipart/form-data">
+					    {{ csrf_field() }}
+					    <div class="form-group">
+						    <b>Upload Bukti Pembayaran</b><br/>
+						    <input type="file" name="file">
+                            <input type="submit" value="Upload" class="btn btn-primary">
+					    </div>
+			        </form>
+                </div>
+            </div
             <div class="card mt-2">
                 <div class="card-body">
                     <h3><i class="fa fa-shopping-cart"></i> Detail Pemesanan</h3>
