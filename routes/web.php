@@ -39,3 +39,7 @@ Route::get('admin-laporan', 'AdminController@laporan');
 Route::get('/hapus/{id}', 'AdminController@hapus');
 Route::get('/delete/{id}', 'AdminController@delete');
 Route::get('/destroy/{id}', 'AdminController@destroy');
+
+//tambah Barang
+Route::get('/tambahBarang', 'AdminController@upload');
+Route::post('/tambahBarang', 'AdminController@proses_upload');

@@ -6,6 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item active" aria-current="page">List Jersey</li>
+                    <li class="breadcrumb-item"><a href="{{ url('tambahBarang') }}">Tambah Barang</a></li>
                     <li class="breadcrumb-item"><a href="{{ url('admin-laporan') }}">Laporan</a></li>
                     <li class="breadcrumb-item"><a href="{{ url('admin-user') }}">Data User</a></li>
                 </ol>

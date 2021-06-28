@@ -13,6 +13,36 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    public function upload()
+    {
+        return view('tambahBarang');
+    }
+    public function proses_upload(Request $request)
+    {        
+        // validasi file
+        $this->validate($request, [
+            'gambar' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+        $gambar = $request->gambar;
+        // tujuan folder
+        $folder_simpan = 'assets';
+        $gambar->move($folder_simpan, $gambar->getClientOriginalName());
+        
+        // tambah barang 
+        $barang = new Barang();
+        $barang->nama_barang = $request->nama_barang;
+        $barang->gambar = $gambar->getClientOriginalName();
+        $barang->harga = $request->harga;
+        $barang->stok = $request->jumlah;
+        $barang->keterangan = $request->keterangan;
+        $barang->berat = $request->berat;
+        $barang->save();
+
+        alert()->success('Tambah Barang', 'Berhasil!');
+        return redirect('tambahBarang');
+    }
+    
+
     public function laporan()
     {
     	$pesanans = Pesanan::paginate();

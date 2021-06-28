@@ -31,6 +31,7 @@
                         @csrf   
                         <input type="file" name="bukti_transaksi"><br>
                         <button type="submit" class="btn btn-primary mt-2">Upload</button>
+                        <h6>NB: Gambar Harus Format .png</h6>
                     </form>
                 </div>
             </div>

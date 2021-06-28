@@ -172,12 +172,7 @@ class PesanController extends Controller
         $transaksi->bukti_transaksi = $gambar->getClientOriginalName();
 		$transaksi->created_at = date('Y-m-d H:i:s');
         $transaksi->updated_at = date('Y-m-d H:i:s');
-        $transaksi->save();
-
-        // status jumlah stok barang ketika sudah dibeli
-        //$barang_stok = Barang::where('id', $pesanan_detail->barang_id)->first();
-        //$barang_stok->stok -= $pesanan_detail->jumlah;
-        //$barang_stok->update();   
+        $transaksi->save();   
 
         // status ketika sudah kirim bukti pembayaran
         $pesanan_status = Pesanan::where('user_id', Auth::user()->id)->where('status', 1)->first();
